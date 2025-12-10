@@ -22,7 +22,7 @@ async function startSotuSession(message) {
     notes: null,
 });
 await message.reply(
-"■■ **State of the Union** initiated.\n\n1■■ What kind of **body day** was it?"
+"**State of the Union** initiated.\n\n 1 What kind of **body day** was it?"
 ); }
 async function generateReport(bodyDay, mindDay, notes) {
   const prompt = `
@@ -63,17 +63,17 @@ client.on('messageCreate', async (message) => {
       if (session.step === 1) {
 session.bodyDay = content;
 session.step = 2;
-await message.reply("2■■ What kind of **mind day** was it?"); return;
+await message.reply("2 What kind of **mind day** was it?"); return;
 }
 if (session.step === 2) {
 session.mindDay = content;
 session.step = 3;
-await message.reply("3■■ What **special things of note** happened today?"); return;
+await message.reply("3 What **special things of note** happened today?"); return;
 }
       if (session.step === 3) {
         session.notes = content;
         sessions.delete(userId);
-await message.reply("■ Generating your State of the Union report...");
+await message.reply("Generating your State of the Union report...");
         const report = await generateReport(
           session.bodyDay,
           session.mindDay,
@@ -85,7 +85,7 @@ return; }
       console.error(error);
       sessions.delete(userId);
       await message.reply(
-"■■ Something went wrong. Please try `!sotu` again later." );
+"Something went wrong. Please try `!sotu` again later." );
 } }
 });
 client.login(process.env.DISCORD_TOKEN);
